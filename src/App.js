@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-// a dict that has has an array of social media profiles with links and its label
+// an object with keys that store each link's label and url
 const profileLinks = {
   github: {
     label: "GitHub",
@@ -31,53 +31,53 @@ const promptSuggestions = [
   "Which link should I click for work samples?",
 ];
 
-// a dict of objects on where the question's answer will be sourced from so users can navigate there
+// An object called sourceSnapshots with keys that store the mock data for the chatbot's responses, including the link source, the temporary "checking" text, the answer, and the actions, which suggest which links the user should visit.
 const sourceSnapshots = {
   portfolio: {
     source: "Portfolio link",
-    checking: "Checking Portfolio...",
+    checking: "Checking Portfolio",
     answer:
-      "Achsah's portfolio is the best place to see polished project writeups, technical background, and work samples in one place.",
+      "Achsah's portfolio is the best place to see her polished project writeups, technical background, and work samples in one place.",
     actions: [profileLinks.portfolio],
   },
   github: {
     source: "GitHub link",
-    checking: "Checking GitHub...",
+    checking: "Checking GitHub",
     answer:
-      "For code-level work, GitHub is the strongest source. It points visitors to Achsah's repositories and technical projects.",
+      "For code-level work, GitHub is the strongest source. It points to her repositories and technical projects.",
     actions: [profileLinks.github],
   },
   graduation: {
     source: "Resume snapshot",
-    checking: "Checking Resume...",
+    checking: "Checking Resume",
     answer:
-      "Yes. The resume snapshot identifies Achsah as a Computer Science major at CSU Monterey Bay who is approaching graduation.",
+      "Achsah will graduate December 2026. Currently, she is a Computer Science major at CSU Monterey Bay, with 1 semester left.",
     actions: [profileLinks.resume],
   },
   recentRole: {
     source: "LinkedIn and Resume snapshot",
-    checking: "Checking LinkedIn...",
+    checking: "Checking LinkedIn",
     answer:
-      "The most recent role highlighted on Achsah's profile is Apple Innovation Scholar, alongside her current Computer Science work at CSU Monterey Bay.",
+      "The most recent role highlighted on Achsah's profile is Apple Innovation Scholar. However she also worked as a Resident Advisor and a Data Science TA.",
     actions: [profileLinks.linkedin, profileLinks.resume],
   },
   contact: {
     source: "LinkedIn and Portfolio links",
-    checking: "Checking contact links...",
+    checking: "Checking contact links",
     answer:
       "LinkedIn is the clearest professional contact path. The portfolio is also useful if someone wants more context before reaching out.",
     actions: [profileLinks.linkedin, profileLinks.portfolio],
   },
   apple: {
     source: "Resume snapshot",
-    checking: "Checking Apple context...",
+    checking: "Checking Apple context",
     answer:
-      "Achsah's profile highlights her as a former Apple Innovation Scholar, which is the experience visitors should look for when they want to understand that part of her background.",
+      "Achsah is a former Apple Innovation Scholar, where did research on AI Autocompletion with a $10k grant over the course of 1.5 years. Learn more about it through these links!",
     actions: [profileLinks.resume, profileLinks.linkedin],
   },
   fallback: {
     source: "Profile links",
-    checking: "Checking Achsah's links...",
+    checking: "Checking Achsah's links",
     answer:
       "I couldn't find an exact match, but I can still help route you. Try the portfolio for projects, LinkedIn for contact or experience, GitHub for code, and the resume for a quick background summary.",
     actions: [
@@ -88,17 +88,22 @@ const sourceSnapshots = {
     ],
   },
 };
-
+// This is a simple function that checks whether any keyword in terms appears inside text.
+// terms look like this: ["cat", "world", "dog"]
 function includesAny(text, terms) {
-  return terms.some((term) => text.includes(term));
+  for (const term of terms) {
+    if (text.includes(term)) {
+      return true;
+    }
+  }
+  return false;
 }
-
 // the function that allows to simulate AI answers
-function getConciergeAnswer(question) {
+function getChatbotAnswer(question) {
   // standerize the words to all lower case
   const normalizedQuestion = question.toLowerCase();
 
-  // optimize the process of finding the right source by looking for key words that indicate which link the user is looking for
+  // find if any of these terms are found in terms form the includesAny function
   if (
     includesAny(normalizedQuestion, [
       "work sample",
@@ -109,6 +114,7 @@ function getConciergeAnswer(question) {
       "case study",
     ])
   ) {
+    // return the portfolio object from the sourceSnapshots dict
     return sourceSnapshots.portfolio;
   }
 
@@ -168,15 +174,19 @@ function getConciergeAnswer(question) {
   if (includesAny(normalizedQuestion, ["apple", "innovation scholar"])) {
     return sourceSnapshots.apple;
   }
-  // error handle any questions that cannot be answered
+  // default response to questions that cannot be answered yet
   return sourceSnapshots.fallback;
 }
 
 // the function that allows the chatbot to work
-function AIConcierge() {
+function AIChatbot() {
+  // isOpen is a react state that manages whether the AI chat panel is open or closed.
   const [isOpen, setIsOpen] = useState(false);
+  // input is another state that manages and keeps track of when there is/isnt input in the textbox area of the chatbot
   const [input, setInput] = useState("");
+  // a react state that decided weather the " checking.." text pops up or not to indicate the chatbot is searching for information
   const [isChecking, setIsChecking] = useState(false);
+  // syores what text to show like " Checking Resume" or "Checking github"
   const [checkingLabel, setCheckingLabel] = useState("");
 
   // the initial message the user would see each time they reload the page
@@ -184,34 +194,40 @@ function AIConcierge() {
     {
       id: "welcome",
       role: "assistant",
-      text: "Hi, I'm Achsah's AI Concierge. Ask a question and I'll point you to the right source.",
+      text: "Hi, I'm Achsah's AI Chatbot. Ask a question and I'll point you to the right source.",
     },
   ]);
   // break the chatbot into another function
-  function askConcierge(question) {
+  function askChatbot(question) {
     // clean and standerdize the question to be analyzed
     const trimmedQuestion = question.trim();
-
+    // making sure that if there is no question or is the checking process is currently happening, to stop and return the progam
     if (!trimmedQuestion || isChecking) {
       return;
     }
-    // store the result of the user's message in a dict and remember their id, what role they are, and their question
-    const answer = getConciergeAnswer(trimmedQuestion);
+    // answer here -> stores the chatbot's response from the sourceSnapshot object's "answer key"
+    const answer = getChatbotAnswer(trimmedQuestion);
     const userMessage = {
       id: `user-${Date.now()}`,
       role: "user",
       text: trimmedQuestion,
     };
-    // what this do??**
+    // updating react states ** important **
+    // I want to keep updating my messages because I want to save the hisyory of my previous messages.
+    // if i dont add my current message to this message array that holds the id,role, and text of each question i ask,
+    // then i wont see my previpus querstions i asked to the chatbot.
     setMessages((currentMessages) => [...currentMessages, userMessage]);
     setInput("");
     setCheckingLabel(answer.checking);
     setIsChecking(true);
-
+    // I added a timeoit because I wanted to create a delay so that the chatbot's response is late by 650ms so the UI can show "Checking..." and feel like mock live retrieval is happening.
     window.setTimeout(() => {
+      // a callback function that runs after the delay
       setMessages((currentMessages) => [
+        // copies the old (named as currentMessages) messages and then adds the new message's id,role,text etc.. into the currentMessages list
         ...currentMessages,
         {
+          // new message
           id: `assistant-${Date.now()}`,
           role: "assistant",
           text: answer.answer,
@@ -221,18 +237,18 @@ function AIConcierge() {
       ]);
       setIsChecking(false);
       setCheckingLabel("");
+      // waiting 650 milliseconds
     }, 650);
   }
-  // once u submit the question, it prevents thw
   function handleSubmit(event) {
     // this prevents the page from refreshing when the submit button is clicked
     event.preventDefault();
-    // calls the function above and it basically matches the user's question, checks if any of the words is found in any of the key words in the function
-    askConcierge(input);
+    // calls getChatbotAnswer and it basically matches the user's question, checks if any of the words is found in any of the key words and then returns the correct reponse based on the sourceSnapshort object and key values
+    askChatbot(input);
   }
 
   return (
-    <section className={`concierge ${isOpen ? "concierge-open" : ""}`}>
+    <section className="concierge">
       <button
         className="concierge-toggle"
         type="button"
@@ -248,14 +264,14 @@ function AIConcierge() {
         <div className="concierge-panel" id="concierge-panel">
           <header className="concierge-header">
             <div>
-              <p className="concierge-kicker">AI Concierge</p>
+              <p className="concierge-kicker">AI Chatbot</p>
               <h2>Ask Achsah's Linktree</h2>
             </div>
             <button
               className="concierge-close"
               type="button"
               onClick={() => setIsOpen(false)}
-              aria-label="Close AI Concierge"
+              aria-label="Close AI Chatbot"
             >
               ×
             </button>
@@ -266,7 +282,7 @@ function AIConcierge() {
               <button
                 key={prompt}
                 type="button"
-                onClick={() => askConcierge(prompt)}
+                onClick={() => askChatbot(prompt)}
                 disabled={isChecking}
               >
                 {prompt}
@@ -323,7 +339,7 @@ function AIConcierge() {
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder="Ask about projects, graduation, work..."
-              aria-label="Ask the AI Concierge a question"
+              aria-label="Ask the AI Chatbot a question"
             />
             <button type="submit" disabled={isChecking || !input.trim()}>
               Send
@@ -342,7 +358,11 @@ function App() {
         <section className="profile">
           <div className="avatar" aria-label="Achsah Jojo profile picture">
             <span>AJ</span>
-            <img src="/profile_pic.jpg" alt="Achsah Jojo" />
+            <img
+              src="/profile_pic.jpg"
+              alt="Achsah Jojo"
+              fetchPriority="high"
+            />
           </div>
 
           <h1>Achsah Jojo</h1>
@@ -381,7 +401,7 @@ function App() {
         </footer>
       </section>
 
-      <AIConcierge />
+      <AIChatbot />
     </main>
   );
 }
