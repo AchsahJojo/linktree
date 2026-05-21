@@ -139,7 +139,7 @@ h1 {
 }
 
 /* Positioning the whole chatbot widget in the bottom right corner of the screen. */
-.concierge {
+.chatbot {
   position: fixed;
   right: 24px;
   bottom: 24px;
@@ -152,7 +152,7 @@ h1 {
 }
 
 /* Styles the floating Ask/Close button so users click to open or close the chatbot. */
-.concierge-toggle {
+.chatbot-toggle {
   min-height: 48px;
   display: inline-flex;
   align-items: center;
@@ -170,13 +170,13 @@ h1 {
 }
 
 /* Adds a small hover animation to make the Ask button look and feel clickable. */
-.concierge-toggle:hover {
+.chatbot-toggle:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 32px rgba(92, 64, 51, 0.28);
 }
 
 /* Styles the small circular AI badge inside the Ask button. */
-.concierge-toggle-mark {
+.chatbot-toggle-mark {
   width: 34px;
   height: 34px;
   display: grid;
@@ -189,7 +189,7 @@ h1 {
 }
 
 /* Styles the chatbot popup panel and controls its size, border, background */
-.concierge-panel {
+.chatbot-panel {
   width: min(380px, calc(100vw - 32px));
   max-height: min(720px, calc(100vh - 110px));
   display: flex;
@@ -201,7 +201,7 @@ h1 {
 }
 
 /* Lays out the top header with the title on the left and the close button on the right. */
-.concierge-header {
+.chatbot-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -211,8 +211,8 @@ h1 {
   border-bottom: 1px solid rgba(201, 24, 43, 0.16);
 }
 
-/* Styles the small AI Concierge label above the chatbot title. */
-.concierge-kicker {
+/* Styles the small AI Chatbot label above the chatbot title. */
+.chatbot-kicker {
   margin: 0 0 4px;
   color: var(--leaf-green);
   font-size: 0.78rem;
@@ -221,7 +221,7 @@ h1 {
 }
 
 /* Styles the main chatbot title text. */
-.concierge-header h2 {
+.chatbot-header h2 {
   margin: 0;
   color: var(--berry-red);
   font-size: 1.18rem;
@@ -229,7 +229,7 @@ h1 {
 }
 
 /* Styles the circular X button that closes the chatbot panel. */
-.concierge-close {
+.chatbot-close {
   width: 34px;
   height: 34px;
   flex: 0 0 auto;
@@ -366,37 +366,12 @@ h1 {
 .message-loading {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   color: var(--leaf-green);
   font-weight: 800;
 }
 
-/* Lays out the animated loading dots in a row. */
-.loading-dots {
-  display: inline-flex;
-  gap: 4px;
-}
-
-/* Styles each individual loading dot and applies the bounce animation. */
-.loading-dots i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--leaf-green);
-}
-
-/* Delays the second loading dot so the dots bounce one after another. */
-.loading-dots i:nth-child(2) {
-  animation-delay: 0.12s;
-}
-
-/* Delays the third loading dot so the bounce animation feels staggered. */
-.loading-dots i:nth-child(3) {
-  animation-delay: 0.24s;
-}
-
 /* Lays out the input box and Send button at the bottom of the chatbot. */
-.concierge-form {
+.chatbot-form {
   display: flex;
   gap: 8px;
   padding: 14px;
@@ -405,7 +380,7 @@ h1 {
 }
 
 /* Styles the text input where users type questions. */
-.concierge-form input {
+.chatbot-form input {
   min-width: 0;
   flex: 1;
   border: 2px solid var(--cake-pink);
@@ -417,12 +392,12 @@ h1 {
 }
 
 /* Changes the input border color when the user is typing in it. */
-.concierge-form input:focus {
+.chatbot-form input:focus {
   border-color: var(--berry-red);
 }
 
 /* Styles the Send button. */
-.concierge-form button {
+.chatbot-form button {
   border: 0;
   border-radius: 999px;
   padding: 0 15px;
@@ -434,7 +409,7 @@ h1 {
 }
 
 /* Makes the Send button look inactive when the input is empty or the bot is checking. */
-.concierge-form button:disabled {
+.chatbot-form button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
 }
@@ -454,19 +429,19 @@ h1 {
   }
 
   /* Lets the chatbot stretch across the mobile screen with side spacing. */
-  .concierge {
+  .chatbot {
     right: 16px;
     bottom: 16px;
     left: 16px;
   }
 
   /* Keeps the Ask button aligned to the right on mobile. */
-  .concierge-toggle {
+  .chatbot-toggle {
     align-self: flex-end;
   }
 
   /* Makes the chatbot panel fill the available mobile width without going off-screen vertically. */
-  .concierge-panel {
+  .chatbot-panel {
     width: 100%;
     max-height: calc(100vh - 96px);
   }
