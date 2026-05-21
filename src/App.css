@@ -61,22 +61,6 @@ body {
   font-weight: 800;
 }
 
-.avatar::after {
-  content: "🍓";
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  position: absolute;
-  right: 2px;
-  bottom: 2px;
-  background: var(--cream);
-  border: 3px solid var(--cake-pink);
-  font-size: 1.35rem;
-  z-index: 2;
-}
-
 .avatar img {
   width: 100%;
   height: 100%;
@@ -154,6 +138,7 @@ h1 {
   margin: 0;
 }
 
+/* Positioning the whole chatbot widget in the bottom right corner of the screen. */
 .concierge {
   position: fixed;
   right: 24px;
@@ -166,6 +151,7 @@ h1 {
   text-align: left;
 }
 
+/* Styles the floating Ask/Close button so users click to open or close the chatbot. */
 .concierge-toggle {
   min-height: 48px;
   display: inline-flex;
@@ -183,11 +169,13 @@ h1 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Adds a small hover animation to make the Ask button look and feel clickable. */
 .concierge-toggle:hover {
   transform: translateY(-2px);
   box-shadow: 0 16px 32px rgba(92, 64, 51, 0.28);
 }
 
+/* Styles the small circular AI badge inside the Ask button. */
 .concierge-toggle-mark {
   width: 34px;
   height: 34px;
@@ -200,6 +188,7 @@ h1 {
   letter-spacing: 0;
 }
 
+/* Styles the chatbot popup panel and controls its size, border, background */
 .concierge-panel {
   width: min(380px, calc(100vw - 32px));
   max-height: min(720px, calc(100vh - 110px));
@@ -209,9 +198,9 @@ h1 {
   border: 3px solid var(--cake-pink);
   border-radius: 24px;
   background: rgba(255, 247, 234, 0.98);
-  box-shadow: 0 22px 54px rgba(92, 64, 51, 0.28);
 }
 
+/* Lays out the top header with the title on the left and the close button on the right. */
 .concierge-header {
   display: flex;
   align-items: flex-start;
@@ -222,6 +211,7 @@ h1 {
   border-bottom: 1px solid rgba(201, 24, 43, 0.16);
 }
 
+/* Styles the small AI Concierge label above the chatbot title. */
 .concierge-kicker {
   margin: 0 0 4px;
   color: var(--leaf-green);
@@ -230,6 +220,7 @@ h1 {
   text-transform: uppercase;
 }
 
+/* Styles the main chatbot title text. */
 .concierge-header h2 {
   margin: 0;
   color: var(--berry-red);
@@ -237,6 +228,7 @@ h1 {
   line-height: 1.2;
 }
 
+/* Styles the circular X button that closes the chatbot panel. */
 .concierge-close {
   width: 34px;
   height: 34px;
@@ -254,6 +246,7 @@ h1 {
   cursor: pointer;
 }
 
+/* Creates a two-column grid for the suggested question buttons. */
 .prompt-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -262,6 +255,7 @@ h1 {
   border-bottom: 1px dashed rgba(201, 24, 43, 0.22);
 }
 
+/* Styles each suggested prompt button. */
 .prompt-grid button {
   min-height: 44px;
   border: 1px solid var(--cake-pink);
@@ -277,17 +271,20 @@ h1 {
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
+/* Changes a prompt button's style when the user hovers over it, unless it is disabled. */
 .prompt-grid button:hover:not(:disabled) {
   transform: translateY(-1px);
   background: var(--soft-green);
   border-color: var(--leaf-green);
 }
 
+/* Makes prompt buttons look inactive while the chatbot is already answering. */
 .prompt-grid button:disabled {
   cursor: not-allowed;
   opacity: 0.58;
 }
 
+/* Creates the scrollable message area where user and assistant messages appear. */
 .messages {
   flex: 1;
   display: flex;
@@ -298,6 +295,7 @@ h1 {
   padding: 14px;
 }
 
+/* Base style shared by all chat bubbles. */
 .message {
   width: fit-content;
   max-width: 92%;
@@ -307,10 +305,12 @@ h1 {
   box-shadow: 0 6px 14px rgba(248, 183, 200, 0.22);
 }
 
+/* Removes default spacing from paragraphs inside message bubbles. */
 .message p {
   margin: 0;
 }
 
+/* Styles assistant messages on the left side. */
 .message-assistant {
   align-self: flex-start;
   border: 1px solid rgba(248, 183, 200, 0.8);
@@ -318,12 +318,14 @@ h1 {
   color: var(--chocolate);
 }
 
+/* Styles user messages on the right side. */
 .message-user {
   align-self: flex-end;
   background: var(--berry-red);
   color: var(--white);
 }
 
+/* Styles the small source label under assistant answers. */
 .message-source {
   display: block;
   margin-top: 8px;
@@ -332,6 +334,7 @@ h1 {
   font-weight: 800;
 }
 
+/* Lays out the action buttons under an assistant response. */
 .message-actions {
   display: flex;
   flex-wrap: wrap;
@@ -339,6 +342,7 @@ h1 {
   margin-top: 10px;
 }
 
+/* Styles each action link, like Open Portfolio. */
 .message-actions a {
   display: inline-flex;
   align-items: center;
@@ -352,11 +356,13 @@ h1 {
   font-weight: 800;
 }
 
+/* Changes action link colors on hover. */
 .message-actions a:hover {
   background: var(--cake-pink);
   color: var(--white);
 }
 
+/* Styles the temporary Checking... loading message. */
 .message-loading {
   display: inline-flex;
   align-items: center;
@@ -365,27 +371,31 @@ h1 {
   font-weight: 800;
 }
 
+/* Lays out the animated loading dots in a row. */
 .loading-dots {
   display: inline-flex;
   gap: 4px;
 }
 
+/* Styles each individual loading dot and applies the bounce animation. */
 .loading-dots i {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--leaf-green);
-  animation: concierge-bounce 0.9s infinite ease-in-out;
 }
 
+/* Delays the second loading dot so the dots bounce one after another. */
 .loading-dots i:nth-child(2) {
   animation-delay: 0.12s;
 }
 
+/* Delays the third loading dot so the bounce animation feels staggered. */
 .loading-dots i:nth-child(3) {
   animation-delay: 0.24s;
 }
 
+/* Lays out the input box and Send button at the bottom of the chatbot. */
 .concierge-form {
   display: flex;
   gap: 8px;
@@ -394,6 +404,7 @@ h1 {
   border-top: 1px solid rgba(201, 24, 43, 0.16);
 }
 
+/* Styles the text input where users type questions. */
 .concierge-form input {
   min-width: 0;
   flex: 1;
@@ -405,10 +416,12 @@ h1 {
   outline: none;
 }
 
+/* Changes the input border color when the user is typing in it. */
 .concierge-form input:focus {
   border-color: var(--berry-red);
 }
 
+/* Styles the Send button. */
 .concierge-form button {
   border: 0;
   border-radius: 999px;
@@ -420,49 +433,45 @@ h1 {
   cursor: pointer;
 }
 
+/* Makes the Send button look inactive when the input is empty or the bot is checking. */
 .concierge-form button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
 }
 
-@keyframes concierge-bounce {
-  0%,
-  80%,
-  100% {
-    transform: translateY(0);
-  }
-
-  40% {
-    transform: translateY(-4px);
-  }
-}
-
+/* Mobile styles for screens 640px wide or smaller. */
 @media (max-width: 640px) {
+  /* Moves the profile card closer to the top and leaves room for the chatbot button. */
   .page {
     align-items: flex-start;
     padding: 18px 16px 104px;
   }
 
+  /* Slightly reduces the card padding and corner radius on smaller screens. */
   .profile-card {
     padding: 28px 22px 24px;
     border-radius: 24px;
   }
 
+  /* Lets the chatbot stretch across the mobile screen with side spacing. */
   .concierge {
     right: 16px;
     bottom: 16px;
     left: 16px;
   }
 
+  /* Keeps the Ask button aligned to the right on mobile. */
   .concierge-toggle {
     align-self: flex-end;
   }
 
+  /* Makes the chatbot panel fill the available mobile width without going off-screen vertically. */
   .concierge-panel {
     width: 100%;
     max-height: calc(100vh - 96px);
   }
 
+  /* Changes suggested prompts from two columns to one column on mobile. */
   .prompt-grid {
     grid-template-columns: 1fr;
   }
