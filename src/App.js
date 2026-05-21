@@ -12,12 +12,17 @@ function App() {
 
           <h1>Achsah Jojo</h1>
 
-          <p className="profile-title">Software Developer · BizzNEST</p>
+          <p className="profile-title">
+            Computer Science Major · California State University Monterey Bay
+          </p>
 
-          <p className="profile-location">📍 Santa Cruz, CA</p>
+          <p className="profile-location">📍 Hollister, CA</p>
         </section>
 
-        <p className="bio">Hello I love being a girly girl in tech.</p>
+        <p className="bio">
+          Future Advanced Machine Learning TA and Former Apple Innovation
+          Schloar
+        </p>
         <div className="links">
           <a
             href="https://github.com/AchsahJojo"
@@ -32,7 +37,7 @@ function App() {
             target="_blank"
             rel="noreferrer"
           >
-            linkedin
+            Linkedin
           </a>
 
           <a
