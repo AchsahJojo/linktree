@@ -1,6 +1,6 @@
 # Achsah Jojo Linktree
 
-This is a custom Linktree profile page based on Achsah Jojo. This was made to complete the Senior Associate Technical Assessment for BizzNEST. It includes a profile card, links to GitHub, LinkedIn, portfolio, and resume, and a new feature that I would like to roll out if I was a link-tree engineer. This feature is a demo that is frontend only at the moment, and it is an AI Chatbot.
+This is a Linktree profile page for Achsah Jojo. This was made to complete the Senior Associate Technical Assessment for BizzNEST. It includes a profile card, links to GitHub, LinkedIn, portfolio, and resume, and a new feature that I would like to roll out if I was a link-tree engineer. This feature is a demo that is frontend only at the moment, and it is an AI Chatbot.
 
 Live site:
 
