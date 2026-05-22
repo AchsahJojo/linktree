@@ -6,7 +6,11 @@ function ProfilePage() {
       <section className="profile">
         <div className="avatar" aria-label="Achsah Jojo profile picture">
           <span>AJ</span>
-          <img src="/profile_pic.jpg" alt="Achsah Jojo" fetchPriority="high" />
+          <img
+            src={`${process.env.PUBLIC_URL}/profile_pic.jpg`}
+            alt="Achsah Jojo"
+            fetchPriority="high"
+          />
         </div>
 
         <h1>Achsah Jojo</h1>
