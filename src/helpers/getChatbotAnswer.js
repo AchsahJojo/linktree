@@ -71,8 +71,8 @@ export function getChatbotAnswer(question) {
       "experience",
       "role",
       "resident advisor",
-      "ra",
-      "ta",
+      "RA",
+      "TA",
       "teaching assistant",
       "machine learning",
     ])
