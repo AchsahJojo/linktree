@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/linktree/static/css/main.9e159427.css",
+    "main.js": "/linktree/static/js/main.e776ece3.js",
+    "static/media/straw_background.jpg": "/linktree/static/media/straw_background.5961c74cb3dc8e0f0523.jpg",
+    "index.html": "/linktree/index.html",
+    "main.9e159427.css.map": "/linktree/static/css/main.9e159427.css.map",
+    "main.e776ece3.js.map": "/linktree/static/js/main.e776ece3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9e159427.css",
+    "static/js/main.e776ece3.js"
+  ]
+}
