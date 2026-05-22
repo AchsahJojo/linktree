@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Achsah Jojo Linktree
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a custom Linktree profile page based on Achsah Jojo. This was made to complete the Senior Associate Technical Assessment for BizzNEST. It includes a profile card, links to GitHub, LinkedIn, portfolio, and resume, and a new feature that I would like to roll out if I was a link-tree engineer. This feature is a demo that is frontend only at the moment, and it is an AI Chatbot.
 
-## Available Scripts
+Live site:
 
-In the project directory, you can run:
+```txt
+https://achsahjojo.github.io/linktree/
+```
 
-### `npm start`
+## What It Is
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a small app built with Create React App. The main page is a personal Linktree with various links. In Addition, there is a new feature that I added: an AI Chatbot that helps visitors figure out which link they should click based on commonly aksed questions about the creator. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The chatbot does not use a real backend or AI API yet. It uses mock profile data and keyword matching to simulate what a real Linktree AIchatbot could do.
 
-### `npm test`
+## Feature
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The AI Chatbot is a floating widget on the page. Visitors can ask questions like:
 
-### `npm run build`
+- Where can I see her projects?
+- Is she graduating soon?
+- What is her most recent job?
+- How can I contact her?
+- What did she do with Apple?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The chatbot reads from mock source snapshots for the profile links, then returns:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- a short answer
+- the source it is using
+- action buttons that open the relevant link
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The goal is to demo a Linktree feature where visitors can ask natural questions instead of scanning every link manually.
 
-### `npm run eject`
+## How To Run It
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Install dependencies:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Start the local development server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm start
+```
 
-## Learn More
+Then open:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```txt
+http://localhost:3000
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create a production build:
 
-### Code Splitting
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Deploy to GitHub Pages:
 
-### Analyzing the Bundle Size
+```bash
+npm run deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Project Structure
 
-### Making a Progressive Web App
+```txt
+src/App.js
+src/components/ProfilePage.js
+src/components/AIChatbot.js
+src/data/profileData.js
+src/helpers/getChatbotAnswer.js
+src/App.css
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `ProfilePage.js` renders the main profile card and links.
+- `AIChatbot.js` renders the chatbot UI and manages chat state.
+- `profileData.js` stores the links, suggested prompts, and mock responses.
+- `getChatbotAnswer.js` matches a visitor question to the best mock response.
+- `App.css` handles the page and chatbot styling.
